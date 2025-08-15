@@ -1,5 +1,4 @@
 import os
-import sys
 from colorama import Fore, init
 
     
@@ -24,24 +23,34 @@ def cool_load(progress, load_width):
     return load
 
 
+def get_load_width():
+    """Возвращает размер полоски загрузки, учитывая символы в стоке"""
+
+    columns = os.get_terminal_size().columns
+    return columns - 7
+
+
 def clear():
     """Очистить консоль"""
+
     os.system('clear')
 
 
 # Основная часть
-clear()
 init(autoreset=True)
-
-LOAD_WIDTH = int(input("Введите размер полоски загрузки (стандарт 40): "))
-if LOAD_WIDTH > 73:
-    LOAD_WIDTH = 73
-
 clear()
+
+if input("Начать загрузку вируса? (y / n) ") is 'y':
+    pass
+else:
+    exit()
+
 progress = 0
 while progress < 100:
     process()
     progress += 1
-    print(f"\r{progress:<3}% ", *cool_load(progress, LOAD_WIDTH), sep='', end='')
+
+    clear()
+    print(f"\r{progress:<3}% ", *cool_load(progress, get_load_width()), sep='', end='')
 else:
-    print(Fore.YELLOW + '\nThe process is ready!')
+    print(Fore.MAGENTA + '\nВаш компьютер успешно заражён!')
