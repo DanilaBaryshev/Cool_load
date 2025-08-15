@@ -6,4 +6,4 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 
-python3 test.py
+python3 cool_load.py
