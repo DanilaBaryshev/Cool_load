@@ -2,15 +2,6 @@ import os
 import sys
 from colorama import Fore, init
 
-
-# Проверяем, запущен ли скрипт из терминала
-if not sys.stdin.isatty():
-    # Берем путь до исходного скрипта
-    script_path = os.path.abspath(__file__)
-    # Открываем новый терминал и запускаем скрипт
-    os.system(f'gnome-terminal -- bash -c "python3 \\"{script_path}\\"; exec bash"')
-    sys.exit()
-
     
 def process():
     """Симуляция процесса"""
@@ -39,6 +30,7 @@ def clear():
 
 
 # Основная часть
+clear()
 init(autoreset=True)
 
 LOAD_WIDTH = int(input("Введите размер полоски загрузки (стандарт 40): "))
